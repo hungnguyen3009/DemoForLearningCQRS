@@ -24,13 +24,17 @@ namespace Logic.Students
         {
             IQueryable<Student> query = _unitOfWork.Query<Student>();
 
+            // Filtered by class
             if (!string.IsNullOrWhiteSpace(enrolledIn))
             {
+                // Get from database
                 query = query.Where(x => x.Enrollments.Any(e => e.Course.Name == enrolledIn));
             }
 
+            // In-Memory Students data
             List<Student> result = query.ToList();
 
+            // Filtered by number of courses
             if (numberOfCourses != null)
             {
                 result = result.Where(x => x.Enrollments.Count == numberOfCourses).ToList();
