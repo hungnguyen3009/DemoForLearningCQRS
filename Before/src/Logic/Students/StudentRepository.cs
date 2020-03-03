@@ -18,7 +18,9 @@ namespace Logic.Students
             return _unitOfWork.Get<Student>(id);
         }
 
-        public IReadOnlyList<Student> GetList(string enrolledIn, int? numberOfCourses)
+        public IReadOnlyList<Student> GetList(
+            string enrolledIn,
+            int? numberOfCourses)
         {
             IQueryable<Student> query = _unitOfWork.Query<Student>();
 
